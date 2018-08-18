@@ -1,0 +1,30 @@
+{
+
+    if($automx{UseLdap} ne 'enabled') {
+        return "\n";
+    }
+
+
+use NethServer::SSSD; 
+    my $sssd = new NethServer::SSSD();
+
+    my $baseDN = $sssd->baseDN();
+    my $bindDN = $sssd->bindDN();
+    $bindDN =~ s/\\/\\\\/g;
+    my $userDN = $sssd->userDN();
+    my $groupDN = $sssd->groupDN();
+    my $bindPassword = $sssd->bindPassword();
+    my $host = $sssd->host();
+    my $ldapURI = $sssd->ldapURI();
+
+$OUT .= <<EOF
+bindmethod = simple
+binddn = "CN=$bindDN,CN=Users,$baseDN"
+bindpw = "$bindPassword"
+base = "CN=Users,$baseDN"
+host = "$ldapURI"
+result_attrs = "cn, givenName, sn, sAMAccountName, displayName"
+scope = "sub"
+filter = "(\&(objectClass=organizationalPerson) (mail=\%s))"
+EOF
+}

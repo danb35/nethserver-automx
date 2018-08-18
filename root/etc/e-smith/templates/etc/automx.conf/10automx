@@ -1,0 +1,15 @@
+{
+
+my $debug = ($automx{Debug} && $automx{Debug} eq 'enabled') ? 'yes' : 'no';
+
+    $OUT .= <<EOF
+# file: /etc/automx.conf
+
+[automx]
+provider = localhost
+domains = *
+
+debug = $debug
+logfile = /var/log/automx/automx.log
+EOF
+}

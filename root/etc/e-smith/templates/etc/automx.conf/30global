@@ -1,0 +1,64 @@
+{
+
+my $sysname = $SystemName.".".$DomainName;
+
+my $backend = ($automx{UseLdap} && $automx{UseLdap} eq 'enabled') ? 'ldap' : 'static';
+
+my $sign_mobileconfig = ($automx{SignMobileconfig} && $automx{SignMobileconfig} eq 'enabled') ? 'yes' : 'no';
+
+ $OUT .= <<EOF
+# If a domain is listed in the automx section, it may have its own section. If
+# none is found here, the global section is used.
+[global]
+backend = $backend
+action = settings
+
+
+# If you want to sign mobileconfig profiles, enable these options. Make sure
+# that your webserver has proper privileges to read the key. The cert file
+# must contain the server certificate and all intermediate certificates. You
+# can simply concatenate these certificates.
+sign_mobileconfig = $sign_mobileconfig
+sign_cert = $automx{CertPath}
+sign_key = $automx{KeyPath}
+
+account_name = \%s account
+#\$\{displayName\} account 
+account_name_short = \%u 
+
+
+smtp = yes
+smtp_server = $sysname
+smtp_port = 587
+smtp_encryption = starttls
+smtp_auth = plaintext
+smtp_refresh_ttl = 6
+smtp_auth_identity = \%u 
+smtp_default = yes
+
+
+imap = yes
+imap_server = $sysname
+imap_port = 143
+imap_encryption = starttls
+imap_auth = plaintext
+imap_refresh_ttl = 6
+imap_auth_identity = \%u 
+
+
+carddav = yes
+carddav_server = $sysname
+carddav_port = 443
+carddav_encryption = ssl
+carddav_auth_identity = \%u
+
+caldav = yes
+caldav_server = $sysname
+caldav_port= 443
+caldav_encryption = ssl
+caldav_auth_identity = \%u
+
+pop = no
+EOF
+}
+

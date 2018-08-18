@@ -1,0 +1,11 @@
+2018-08-17 21:49:47,205 - Mock Version: 1.4.11
+2018-08-17 21:49:47,279 - Start: yum install
+2018-08-17 21:57:07,282 - Finish: yum install
+2018-08-17 21:57:08,038 - Start: creating root cache
+2018-08-17 21:57:32,021 - Finish: creating root cache
+2018-08-17 21:57:32,023 - Finish: chroot init
+2018-08-17 21:57:32,160 - Start: buildsrpm
+2018-08-17 21:57:32,172 - Start: rpmbuild -bs
+2018-08-17 21:57:32,439 - Finish: rpmbuild -bs
+2018-08-17 21:57:32,442 - Finish: buildsrpm
+2018-08-17 21:57:32,447 - Start: clean chroot

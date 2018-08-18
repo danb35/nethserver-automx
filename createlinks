@@ -1,0 +1,17 @@
+#!/usr/bin/perl -w
+
+use esmith::Build::CreateLinks qw(:all);
+
+# actions to do
+
+event_templates('nethserver-automx-update', qw(
+		/etc/automx.conf
+		/etc/httpd/conf.d/virtualhosts.conf
+));
+
+event_actions('nethserver-automx-update',
+             'initialize-default-databases' => '00');
+
+event_services('nethserver-automx-update', qw(
+               httpd restart
+));

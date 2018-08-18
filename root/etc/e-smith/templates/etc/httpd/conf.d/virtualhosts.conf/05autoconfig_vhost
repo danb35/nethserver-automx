@@ -1,0 +1,36 @@
+{
+
+my $servername = "autoconfig.".$DomainName;
+my $serveradmin = "webmaster@".$DomainName;
+my $serveralias = "autodiscover.".$DomainName;
+
+ $OUT .= <<EOF
+
+<VirtualHost *:80>
+        ServerName $servername
+        ServerAdmin $serveradmin
+        Redirect / https://$servername
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerName $servername:443
+        ServerAlias $serveralias:443
+        ServerAdmin $serveradmin
+		DocumentRoot /usr/share/automx
+		<Directory "/usr/share/automx">
+			Require all granted
+		</Directory>
+        <IfModule mod_wsgi.c>
+                WSGIScriptAliasMatch \\
+                        (?i)^/.+/(autodiscover|config-v1.1).xml \\
+                        /usr/lib/automx/automx_wsgi.py
+                WSGIScriptAlias \\
+                        /mobileconfig \\
+                        /usr/lib/automx/automx_wsgi.py
+                <Directory "/usr/lib/automx">
+                        Require all granted
+                </Directory>
+        </IfModule>
+</VirtualHost>
+EOF
+}

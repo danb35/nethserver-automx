@@ -1,0 +1,14 @@
+{
+ $OUT .=<<EOF
+# The DEFAULT section is always merged into each other section. Each section
+# can overwrite settings done here.
+[DEFAULT]
+account_type = email
+account_name = account email
+account_name_short = test
+
+display_name = prova
+EOF
+} 
+
+

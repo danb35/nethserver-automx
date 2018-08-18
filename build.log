@@ -1,0 +1,18 @@
+Mock Version: 1.4.11
+ENTER ['do'](['bash', '--login', '-c', '/usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/nethserver-automx.spec'], timeout=0nspawn_args=['--bind=/tmp/mock-resolv.yrlV0K:/etc/resolv.conf']shell=Falseuid=1001chrootPath='/var/lib/mock/nethserver-7-x86_64/root'gid=135user='mockbuild'env={'LANG': 'C', 'TERM': 'vt100', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'HOME': '/builddir', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'PS1': '<mock-chroot> \\s-\\v\\$ '}logger=<mockbuild.trace_decorator.getLog object at 0x7f8dee2fbd50>unshare_net=TrueprintOutput=True)
+Executing command: ['/usr/bin/systemd-nspawn', '-q', '-M', '3f925a168a6744369be1a0aa9067088c', '-D', '/var/lib/mock/nethserver-7-x86_64/root', '--bind=/tmp/mock-resolv.yrlV0K:/etc/resolv.conf', '--setenv=LANG=C', '--setenv=TERM=vt100', '--setenv=SHELL=/bin/bash', '--setenv=HOSTNAME=mock', '--setenv=PROMPT_COMMAND=printf "\\033]0;<mock-chroot>\\007"', '--setenv=HOME=/builddir', '--setenv=PATH=/usr/bin:/bin:/usr/sbin:/sbin', '--setenv=PS1=<mock-chroot> \\s-\\v\\$ ', '-u', 'mockbuild', 'bash', '--login', '-c', '/usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/nethserver-automx.spec'] with env {'LANG': 'C', 'TERM': 'vt100', 'SHELL': '/bin/bash', 'HOSTNAME': 'mock', 'PROMPT_COMMAND': 'printf "\\033]0;<mock-chroot>\\007"', 'HOME': '/builddir', 'PATH': '/usr/bin:/bin:/usr/sbin:/sbin', 'PS1': '<mock-chroot> \\s-\\v\\$ '} and shell False
+BUILDSTDERR: Failed to create directory /var/lib/mock/nethserver-7-x86_64/root//sys/fs/selinux: Read-only file system
+BUILDSTDERR: Failed to create directory /var/lib/mock/nethserver-7-x86_64/root//sys/fs/selinux: Read-only file system
+BUILDSTDERR: error: File /builddir/build/SOURCES/nethserver-automx-0.0.1.tar.bz2: No such file or directory
+Building target platforms: x86_64
+Building for target x86_64
+Child return code was: 1
+EXCEPTION: [Error()]
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/mockbuild/trace_decorator.py", line 96, in trace
+    result = func(*args, **kw)
+  File "/usr/lib/python2.7/site-packages/mockbuild/util.py", line 634, in do
+    raise exception.Error("Command failed: \n # %s\n%s" % (command, output), child.returncode)
+Error: Command failed: 
+ # /usr/bin/systemd-nspawn -q -M 3f925a168a6744369be1a0aa9067088c -D /var/lib/mock/nethserver-7-x86_64/root --bind=/tmp/mock-resolv.yrlV0K:/etc/resolv.conf --setenv=LANG=C --setenv=TERM=vt100 --setenv=SHELL=/bin/bash --setenv=HOSTNAME=mock --setenv=PROMPT_COMMAND=printf "\033]0;<mock-chroot>\007" --setenv=HOME=/builddir --setenv=PATH=/usr/bin:/bin:/usr/sbin:/sbin --setenv=PS1=<mock-chroot> \s-\v\$  -u mockbuild bash --login -c /usr/bin/rpmbuild -bs --target x86_64 --nodeps /builddir/build/SPECS/nethserver-automx.spec
+

@@ -1,0 +1,26 @@
+{
+    use esmith::NetworksDB;
+    my $ndb = esmith::NetworksDB->open_ro();
+    
+    my @neth ;
+    my $neth_s = "";    
+    my $tmp = "";
+
+    foreach (map {
+        my ($addr, $mask) = split('/', $_);
+        esmith::util::computeLocalNetworkShortSpec($addr, $mask || '255.0.0.0');
+             } $ndb->local_access_spec() ) {
+        push @neth,$_;
+    }
+
+    $neth_s =  join( ", ", @neth);    
+
+    $OUT .= <<EOF
+# Protect against DoS
+memcache = 127.0.0.1:11211
+memcache_ttl = 600
+client_error_limit = 20
+rate_limit_exception_networks = $neth_s
+EOF
+
+}
