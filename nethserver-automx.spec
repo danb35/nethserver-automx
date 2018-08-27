@@ -39,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_nseventsdir}/%{name}-update
 
 %changelog
-* Sun Aug 26 2018 Dan Brown <dan@familybrown.org> - 0.0.1-5.el7
+* Sun Aug 26 2018 Dan Brown <dan@familybrown.org> - 0.0.1-5.ns7
 - Changed virtual host configuration to correct Let's Encrypt renewal
 
 * Fri Jun 15 2018 Dan Brown <dan@familybrown.org> - 0.0.1-4.el7
