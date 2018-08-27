@@ -9,7 +9,15 @@ my $serveralias = "autodiscover.".$DomainName;
 <VirtualHost *:80>
         ServerName $servername
         ServerAdmin $serveradmin
-        Redirect / https://$servername
+        RewriteEngine on
+        RewriteRule ^/\\.well-known/ - [L]
+        RewriteRule (.*) https://$servername\$1 [R,L]
+        Alias "/.well-known/acme-challenge/" "/var/www/html/.well-known/acme-challenge/"
+        <Directory "/var/www/html/.well-known/acme-challenge/">
+                Require all granted
+                Options -Indexes -FollowSymLinks
+                AllowOverride None
+        </Directory>
 </VirtualHost>
 
 <VirtualHost *:443>
