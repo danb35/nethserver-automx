@@ -1,7 +1,7 @@
 Summary: NethServer configuration for automx
 %define name nethserver-automx
 %define version 0.0.1
-%define release 5
+%define release 6
 Name: %{name}
 Version: %{version}
 Release: %{release}%{?dist}
@@ -10,7 +10,9 @@ Source: %{name}-%{version}.tar.gz
 BuildArch: noarch
 
 BuildRequires: nethserver-devtools
-Requires: automx nethserver-httpd
+Requires: automx
+Requires: nethserver-httpd
+Requires: python-ldap
 #AutoReq: no
 
 %description
@@ -20,6 +22,9 @@ NethServer configuration for automx (https://automx.org)
 %setup
 
 %post
+mkdir -p /var/log/automx
+chown apache:apache /var/log/automx
+
 %preun
 
 %build
@@ -39,6 +44,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_nseventsdir}/%{name}-update
 
 %changelog
+* Sat Sep  8 2018 Dan Brown <dan@familybrown.org> - 0.0.1-6.ns7
+- Added dependency on python-ldap
+- Created and set ownership of log directory
+
 * Sun Aug 26 2018 Dan Brown <dan@familybrown.org> - 0.0.1-5.ns7
 - Changed virtual host configuration to correct Let's Encrypt renewal
 
