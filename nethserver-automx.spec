@@ -8,6 +8,7 @@ Release: %{release}%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
 BuildArch: noarch
+URL: https://github.com/danb35/nethserver-automx
 
 BuildRequires: nethserver-devtools
 Requires: automx
