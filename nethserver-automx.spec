@@ -14,6 +14,7 @@ BuildRequires: nethserver-devtools
 Requires: automx
 Requires: nethserver-httpd
 Requires: python-ldap
+Requires: nethserver-release = 7
 #AutoReq: no
 
 %description
