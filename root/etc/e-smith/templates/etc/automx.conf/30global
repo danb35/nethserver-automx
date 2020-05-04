@@ -1,15 +1,15 @@
 {
 
-my $sysname = $SystemName.".".$DomainName;
-my $imapHost = $sysname
-my $smtpHost = $sysname
-
-if( lentgh $automx{ImapHost} ) {
-	my $imapHost = $automx{ImapHost}
+if( length $automx{ImapHost} ) {
+        $imapHost = $automx{ImapHost};
+}else{
+      	$imapHost = $SystemName.".".$DomainName;
 }
 
-if( lentgh $automx{SmtpHost} ) {
-	my $smtpHost = $automx{SmtpHost}
+if( length $automx{SmtpHost} ) {
+        $smtpHost = $automx{SmtpHost};
+}else{
+      	$smtpHost = $SystemName.".".$DomainName;
 }
 
 my $backend = ($automx{UseLdap} && $automx{UseLdap} eq 'enabled') ? 'ldap' : 'static';
@@ -57,13 +57,13 @@ imap_auth_identity = \%u
 
 
 carddav = yes
-carddav_server = $sysname
+carddav_server = $SystemName.$DomainName
 carddav_port = 443
 carddav_encryption = ssl
 carddav_auth_identity = \%u
 
 caldav = yes
-caldav_server = $sysname
+caldav_server = $SystemName.$DomainName
 caldav_port= 443
 caldav_encryption = ssl
 caldav_auth_identity = \%u
