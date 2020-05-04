@@ -1,7 +1,7 @@
 Summary: NethServer configuration for automx
 %define name nethserver-automx
 %define version 0.0.1
-%define release 6
+%define release 7
 Name: %{name}
 Version: %{version}
 Release: %{release}%{?dist}
@@ -46,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_nseventsdir}/%{name}-update
 
 %changelog
+* Mon May  4 2020 Dan Brown <dan@familybrown.org> - 0.0.1-7.ns7
+- Add option for specified IMAP/SMTP server names
+
 * Sat Sep  8 2018 Dan Brown <dan@familybrown.org> - 0.0.1-6.ns7
 - Added dependency on python-ldap
 - Created and set ownership of log directory

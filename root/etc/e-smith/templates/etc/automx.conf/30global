@@ -1,6 +1,16 @@
 {
 
 my $sysname = $SystemName.".".$DomainName;
+my $imapHost = $sysname
+my $smtpHost = $sysname
+
+if( lentgh $automx{ImapHost} ) {
+	my $imapHost = $automx{ImapHost}
+}
+
+if( lentgh $automx{SmtpHost} ) {
+	my $smtpHost = $automx{SmtpHost}
+}
 
 my $backend = ($automx{UseLdap} && $automx{UseLdap} eq 'enabled') ? 'ldap' : 'static';
 
@@ -28,7 +38,7 @@ account_name_short = \%u
 
 
 smtp = yes
-smtp_server = $sysname
+smtp_server = $smtpHost
 smtp_port = 587
 smtp_encryption = starttls
 smtp_auth = plaintext
@@ -38,7 +48,7 @@ smtp_default = yes
 
 
 imap = yes
-imap_server = $sysname
+imap_server = $imapHost
 imap_port = 143
 imap_encryption = starttls
 imap_auth = plaintext
